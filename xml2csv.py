@@ -4,7 +4,7 @@ from more_itertools import unique_everseen
 
 def xmlparse(mapname, restrict=False, excludeway=[]):
     e = xml.etree.ElementTree.parse(mapname).getroot()
-    node = open(str(sys.argv[1])+'.csv', 'w')
+    node = open(str(sys.argv[2]), 'w')
     node.write(("%s,%s,%s") % ("ID:ID","Lat","Long \n"))
     coords = {}
     for coord in e.findall('node'):
@@ -22,7 +22,7 @@ def xmlparse(mapname, restrict=False, excludeway=[]):
         node.write(("%s,%s,%s\n") % (osmid, lat, lon))
     node.close()            
   
-    relName = str(sys.argv[2])+'.csv'
+    relName = str(sys.argv[3])
     rel = open(relName, 'w')
     rel.write(":START_ID,Weight,:END_ID,:TYPE")
     def getNodes(nodes):
@@ -60,6 +60,6 @@ def xmlparse(mapname, restrict=False, excludeway=[]):
         out_file.writelines(unique_everseen(f))
     
 
-result = xmlparse(str(sys.argv[0])'.osm')
+result = xmlparse(str(sys.argv[1]))
 
 
