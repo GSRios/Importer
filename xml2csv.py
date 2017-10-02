@@ -53,7 +53,7 @@ def xmlparse(mapname, restrict=False, excludeway=[]):
 		if 'oneway' not in attributes and 'highway' in attributes and attributes['highway'] != 'motorway':
 			getNodes(list(reversed(waydict[i][1])))
 		elif 'oneway' in attributes and attributes['oneway'] != 'yes' and attributes['oneway'] != '-1' and  attributes['highway'] != 'motorway':
-			getNodes(list(reversed(listwaydict[i][1])))  
+			getNodes(list(reversed(waydict[i][1])))  
     rel.close()
 
     with open(relName,'r') as f, open('new_'+relName,'w') as out_file:
